@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <!--<script src="https://cdn.jsdelivr.net/gh/corbanbrook/dsp.js/dsp.js"></script>-->
+    <script src="grabURL.js"></script>
+    <script src="script.js"></script>
+<style>
+.code {
+  font-family: "Lucida Console", Monaco, monospace;
+  position: absolute;
+  padding: 8;
+  border: 0px dashed #008800;
+  resize: none;
+  white-space: pre;
+  overflow: auto;
+  margin:0;
+}
+#codeInput{
+  width:50%;
+  height:100%;
+  left:0;
+  top:0;
+  background-color:#99FFCC;
+
+}
+#codeOutput{
+  width:50%;
+  height:50%;
+  right:0;
+  top:0;
+  background-color:#FF99CC;
+}
+#trackOutput{
+  width:50%;
+  height:50%;
+  right:0;
+  bottom:0;
+  background-color:#FFCC99;
+}
+#buttonDiv{
+  position: fixed;
+  right:0;
+  top:0;
+  font-size: 16;
+}
+#docsLink{
+  position: fixed;
+  right:0;
+  bottom:0;
+  font-size: 24;
+}
+body {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height:100%;
+  margin:0;
+}
+</style>
+  </head>
+  <body>
+    <textarea spellcheck="false" id="codeInput" class="code"></textarea>
+    <textarea spellcheck="false" id="codeOutput" class="code"></textarea>
+    <textarea spellcheck="false" id="trackOutput" class="code"></textarea>
+    <div id="buttonDiv">
+      <button id="runButton" onclick="runCode()">Run Code</button>
+      <button id="playButton" onclick="serializeTracks()">Play</button>
+    </div>
+    <a id="docsLink" href="esdocs.html" target="_blank">EarSketch Documentation</a>
+  </body>
+</html>

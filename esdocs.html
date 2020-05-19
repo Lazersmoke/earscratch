@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <!--<script src="https://cdn.jsdelivr.net/gh/corbanbrook/dsp.js/dsp.js"></script>-->
+    <script src="https://earsketch.gatech.edu/earsketch2/scripts/src/data/api_doc.js"></script>
+    <script src="grabURL.js"></script>
+    <script src="docscript.js" charset="utf-8"></script>
+<style>
+
+table.esTable {
+  font-family: "Lucida Console", Monaco, monospace;
+  border: 1px solid #15A48A;
+  background-color: #C6E9D2;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.esTable td, table.esTable th {
+  border: 1px solid #AAAAAA;
+  padding: 5px 2px;
+}
+table.esTable tbody td {
+  font-size: 13px;
+}
+table.esTable tr:nth-child(even) {
+  background: #C4DEF5;
+}
+table.esTable thead {
+  background: #0E6229;
+}
+table.esTable thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-left: 2px solid #389A23;
+}
+table.esTable thead th:first-child {
+  border-left: none;
+}
+
+table.esTable tfoot td {
+  font-size: 14px;
+}
+table.esTable tfoot .links {
+  text-align: right;
+}
+table.esTable tfoot .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+</style>
+  </head>
+  <body style="float: left">
+    <div>
+      <table id="earsketchDocs" class="esTable">
+        <tr>
+          <th>Function</th>
+          <th>Parameters</th>
+          <th>Return Value</th>
+        </tr>
+      </table>
+    </div>
+    <br>
+    <div style="overflow:auto">
+      <table id="tagDocs" class="esTable" style="width: auto">
+        <tr>
+          <th>File Key</th>
+          <th>Description</th>
+          <th>Tempo</th>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
