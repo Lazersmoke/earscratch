@@ -61,11 +61,12 @@ body {
   </head>
   <body>
     <textarea spellcheck="false" id="codeInput" class="code"></textarea>
-    <textarea spellcheck="false" id="codeOutput" class="code"></textarea>
-    <textarea spellcheck="false" id="trackOutput" class="code"></textarea>
+    <textarea readonly spellcheck="false" id="codeOutput" class="code"></textarea>
+    <textarea readonly spellcheck="false" id="trackOutput" class="code"></textarea>
     <div id="buttonDiv">
       <button id="runButton" onclick="runCode()">Run Code</button>
-      <button id="playButton" onclick="serializeTracks()">Play</button>
+      <button id="playButton" onclick="serializeTracks()" disabled>Play</button>
+      <input type="checkbox" id="pythonCheckbox">Process as python</button>
     </div>
     <a id="docsLink" href="esdocs.html" target="_blank">EarSketch Documentation</a>
   </body>
