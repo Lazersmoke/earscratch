@@ -46,10 +46,12 @@ function preprocessCode(codeInput){
       .replace(/^(\s*)(while)([^\n]*):\s*((?:\n+\1 +[^\n]*)+)/mg,"$1$2($3){$4}")
       .replace(/^(\s*)(else:)\s*((?:\n+\1 +[^\n]*)+)/mg,"$1else{$3}")
       .replace(/^(\s*)(elif)([^\n]*):\s*((?:\n+\1 +[^\n]*)+)/mg,"$1else if ($3){$4}")
-      .replace(/int\(/mg,"Number(")
+      .replace(/ int\(/mg," Number(")
+      .replace(/print\s*("[^"]*")/mg,"print($1)")
       .replace(/^(.*if\s*\(.*)and(.*\).*)$/mg,"$1 && $2")
       .replace(/^(.*if\s*\(.*)or(.*\).*)$/mg,"$1 || $2")
-      .replace(/^(\s*)for\s*([\w\d]+)\s*in\s*range\((.*), (.*)\)\s*:\s*((?:\n+\1 [^\n]*)+)/mg,"$1for(var $2 = $3; $2 <= $4; $2++){$5}")
+      .replace(/^(\s*)for\s*([\w\d]+)\s*in\s*range\s*\(([^,]*),([^,]*)\)\s*:\s*((?:\n+\1 [^\n]*)+)/mg,"$1for(var $2 = $3; $2 <= $4; $2++){$5}")
+      .replace(/^(\s*)for\s*([\w\d]+)\s*in\s*range\s*\(([^,]*),([^,]*),([^,]*)\)\s*:\s*((?:\n+\1 [^\n]*)+)/mg,"$1for(var $2 = $3; $2 <= $4; $2 += $5){$6}")
       .split("\n").filter(line => !line.match(/\s*#/) && !line.startsWith("from earsketch import")).join("\n")
     console.log(codeInput)
   }
@@ -129,6 +131,8 @@ function fitMedia(fileKey,trackNumber,startMeasure,endMeasure){
   tracks[trackNumber].push({timing: [secondsPerMeasure() * startMeasure,secondsPerMeasure() * endMeasure], fileKey: fileKey})
 }
 // Effect stub stuff
+FILTER = "FILTER"
+FILTER_FREQ = "FILTER_FREQ"
 VOLUME = "VOLUME"
 GAIN = "GAIN"
 False = false
