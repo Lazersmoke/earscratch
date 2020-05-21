@@ -1,7 +1,4 @@
 
-// Load ear sketch documentation
-//
-
 function addTd(tr,tdInside){
   var td = document.createElement("td")
   td.appendChild(tdInside)
@@ -22,10 +19,9 @@ function prettyTypedItem(itemName,item){
   return wholeSpan
 }
 
-var audioTagsES = JSON.parse(localStorage.getItem("audioTagsES"))
-
-window.onload = function(){
+window.onload = () => {
   const esTable = document.getElementById("earsketchDocs")
+  // This is loaded via script tag due to same-origin policy issues
   ESApiDoc["simple setEffect"] = ESApiDoc.setEffect[0]
   ESApiDoc["complex setEffect"] = ESApiDoc.setEffect[1]
   delete ESApiDoc.setEffect
@@ -56,27 +52,19 @@ window.onload = function(){
 
     esTable.appendChild(thisRow)
   })
+}
 
-  if(audioTagsES)
-    makeTagsTable(audioTagsES)
-  if(!audioTagsES){
-    grabURL("https://earsketch.gatech.edu/EarSketchWS/services/audio/getaudiotags","json",resp => {
-      audioTagsES = resp
-      localStorage.setItem("audioTagsES",JSON.stringify(audioTagsES))
-      makeTagsTable(audioTagsES)
+fetch(new Request("https://earsketch.gatech.edu/EarSketchWS/services/audio/getaudiotags",{cache: "force-cache"}))
+  .then(r => r.json())
+  .then(tags => {
+    const tagTable = document.getElementById("tagDocs")
+    tags.audioTags.forEach(tag => {
+      const thisRow = document.createElement("tr")
+
+      addTd(thisRow,document.createTextNode(tag.file_key))
+      addTd(thisRow,document.createTextNode(tag.instrument + " (" + tag.genre + ")"))
+      addTd(thisRow,document.createTextNode(tag.tempo))
+
+      tagTable.appendChild(thisRow)
     })
-  }
-}
-
-function makeTagsTable(audioTags){
-  var tagTable = document.getElementById("tagDocs")
-  audioTags.audioTags.forEach(tag => {
-    var thisRow = document.createElement("tr")
-
-    addTd(thisRow,document.createTextNode(tag.file_key))
-    addTd(thisRow,document.createTextNode(tag.instrument + " (" + tag.genre + ")"))
-    addTd(thisRow,document.createTextNode(tag.tempo))
-
-    tagTable.appendChild(thisRow)
   })
-}
